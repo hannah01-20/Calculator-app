@@ -58,6 +58,7 @@ class Widget(QWidget):
         grid.addWidget(times, 1, 3)
         grid.addWidget(divide, 2, 3)
         grid.addWidget(enter, 3, 3, 2, 1)
+        grid.addWidget(decimal, 4, 0)
 
         grid.addWidget(num7, 1, 0)
         grid.addWidget(num8, 1, 1)
