@@ -46,28 +46,39 @@ class Widget(QWidget):
         decimal = QPushButton(".")
         decimal.clicked.connect(lambda : self.insertValue("."))
         decimal.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        decimal.setObjectName("redButton")
         plus = QPushButton("+")
         plus.clicked.connect(lambda : self.insertValue("+"))
         plus.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
         minus = QPushButton("-")
         minus.clicked.connect(lambda : self.insertValue("-"))
         minus.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
         times = QPushButton("*")
         times.clicked.connect(lambda : self.insertValue("*"))
         times.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
         divide = QPushButton("/")
         divide.clicked.connect(lambda : self.insertValue("/"))
         divide.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
+
         clear = QPushButton("C")
         clear.clicked.connect(lambda : self.lineEdit.clear())
         clear.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        clear.setObjectName("redButton")
+
         delete = QPushButton("Del")
         delete.clicked.connect(lambda : self.lineEdit.setText(self.lineEdit.text()[:-1]))
         delete.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        delete.setObjectName("redButton")
+
         enter = QPushButton("=")
         enter.clicked.connect(self.calculate)
         enter.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        enter.setObjectName("redButton")
+
 
         grid = QGridLayout()
         grid.addWidget(clear, 0, 0)

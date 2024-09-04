@@ -7,3 +7,15 @@
 QWidget{
     background-color: #2B303A;
 }
+
+QLineEdit{
+    background-color: #434a56;
+}
+
+QPushButton{
+    background-color: #7C7C7C;
+}
+
+QPushButton#redButton{
+    background-color: #D64933;
+}
