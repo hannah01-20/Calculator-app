@@ -103,9 +103,6 @@ class Widget(QWidget):
 
         groupButtons.setLayout(grid)
 
-
-        # Applying layouts on components
-
         layout = QVBoxLayout()
         layout.addWidget(self.lineEdit)
         layout.addWidget(groupButtons)
