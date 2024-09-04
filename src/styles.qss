@@ -1,0 +1,9 @@
+*{
+    color: white;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+QWidget{
+    background-color: #2B303A;
+}
