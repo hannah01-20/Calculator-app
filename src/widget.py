@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QGridLayout, QGroupBox
+from PySide6.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QGridLayout, QGroupBox, QSizePolicy
 from PySide6.QtCore import Qt
 
 class Widget(QWidget):
@@ -6,49 +6,68 @@ class Widget(QWidget):
         super().__init__()
 
         self.lineEdit = QLineEdit("")
-        self.lineEdit.clearFocus
+        self.lineEdit.returnPressed.connect(self.calculate)
+        self.lineEdit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         groupButtons = QGroupBox(" N A N A C O D E ")
         groupButtons.setAlignment(Qt.AlignHCenter)
 
         num1 = QPushButton("1")
         num1.clicked.connect(lambda : self.insertValue("1"))
+        num1.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         num2 = QPushButton("2")
         num2.clicked.connect(lambda : self.insertValue("2"))
+        num2.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         num3 = QPushButton("3")
         num3.clicked.connect(lambda : self.insertValue("3"))
+        num3.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         num4 = QPushButton("4")
         num4.clicked.connect(lambda : self.insertValue("4"))
+        num4.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         num5 = QPushButton("5")
         num5.clicked.connect(lambda : self.insertValue("5"))
+        num5.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         num6 = QPushButton("6")
         num6.clicked.connect(lambda : self.insertValue("6"))
+        num6.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         num7 = QPushButton("7")
         num7.clicked.connect(lambda : self.insertValue("7"))
+        num7.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         num8 = QPushButton("8")
         num8.clicked.connect(lambda : self.insertValue("8"))
+        num8.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         num9 = QPushButton("9")
         num9.clicked.connect(lambda : self.insertValue("9"))
+        num9.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         num0 = QPushButton("0")
         num0.clicked.connect(lambda : self.insertValue("0"))
+        num0.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         decimal = QPushButton(".")
         decimal.clicked.connect(lambda : self.insertValue("."))
+        decimal.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         plus = QPushButton("+")
         plus.clicked.connect(lambda : self.insertValue("+"))
+        plus.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         minus = QPushButton("-")
         minus.clicked.connect(lambda : self.insertValue("-"))
+        minus.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         times = QPushButton("*")
         times.clicked.connect(lambda : self.insertValue("*"))
+        times.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         divide = QPushButton("/")
         divide.clicked.connect(lambda : self.insertValue("/"))
+        divide.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         clear = QPushButton("C")
         clear.clicked.connect(lambda : self.lineEdit.clear())
+        clear.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         delete = QPushButton("Del")
         delete.clicked.connect(lambda : self.lineEdit.setText(self.lineEdit.text()[:-1]))
+        delete.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         enter = QPushButton("=")
         enter.clicked.connect(self.calculate)
+        enter.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         grid = QGridLayout()
         grid.addWidget(clear, 0, 0)
@@ -82,6 +101,7 @@ class Widget(QWidget):
 
         self.setLayout(layout)
 
+
     def insertValue(self, x):
         operands = ["+", "-", "*", "/"]
         currentValue = self.lineEdit.text()
@@ -105,10 +125,14 @@ class Widget(QWidget):
 
     def calculate(self):
         operands = ["+", "-", "*", "/"]
-        for operand in operands:
-            if self.lineEdit.text()[-1] == operand:
-                self.lineEdit.clear()
-                return "Missing value"
+        try:
+            for operand in operands:
+                if self.lineEdit.text()[-1] == operand:
+                    self.lineEdit.clear()
+                    return "Missing value"
+        except IndexError as e:
+            print(e)
+            return "There is no to calculate."
         
         try:
             total = eval(self.lineEdit.text())
